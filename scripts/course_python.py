@@ -1,64 +1,37 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import sys
-
 print ("Python version:", (sys.version), '\n')
 
 # -------------------------------------------------------------------------------
-# Lists
-my_list = ['Jotelly', 32, 'M', 1.84, "Solteiro"]  # List define "[]"
-my_list[3] = 1.82  # new replacement value
-# print(type(my_list))
-# print(my_list[::])
+# Data entry using input
 
-print("\n{nome} : {idade} : {sexo} : {altura}".format(
-    nome=my_list[0], idade=my_list[1], sexo=my_list[2], altura=my_list[3]))
-
-# -------------------------------------------------------------------------------
-# Tuples
-my_tuple = ('Jotelly', 32)  # Tuple define "()"
-
-# Not Recommended
-# my_tuple[1] = 1.82 # new replacement value
-
-print("\n{nome} : {idade}\n".format(
-    nome=my_tuple[0], idade=my_tuple[1]))
-
-# -------------------------------------------------------------------------------
-# Dictionaries
-print("\nDictionaries\n")
-dict_cars = {
-    "Brand": "Ford",
-    "Color": "Black",
-    "Model": "Mustang",
-    "Year": 1964
+dict_data = {
+    "JOTELLY": "250e87",
+    "ANA": "123456",
+    "FABIO": "34050",
+    "MARINS": "bobagem123",
+    "LUAN": "must25"
 }
 
-print(dict_cars)
-print(dict_cars.get("year"))
+# Calling a Function search_user_name
+def search_user_name(user, password):
+    # search name value and password value in dict_data
+    for x in dict_data:
+        if user in x:
+            # print("{user_name}!".format(user_name=x))
+            if(dict_data[x] == password):
+                return True
+    return False
 
-# -------------------------------------------------------------------------------
-# Loop using "FOR" through a dictionary
-print("\nLoop using 'FOR' through a dictionary\n")
-for x in dict_cars:
-    if "Brand" in dict_cars:
-        print("{name} : {value}".format(
-            name=x, value=dict_cars[x]))
+while (1):
+    # Takes input name user
+    my_name = str(raw_input('Insert your name: '))
+
+    # Takes input name user
+    my_passwords = str(raw_input('Insert your passwords: '))
+
+    if search_user_name(my_name.upper(), my_passwords):
+        print("Welcome {0}".format(my_name))
     else:
-        print("Don't exist!")
-
-# Loop using "WHILE" through a dictionary
-print("\nLoop using 'WHILE' through a dictionary\n")
-num_1 = 0
-num_2 = 200
-cont = 10
-
-while num_1 < num_2:
-    num_1 += 1  # Python doesn't support (num_1 ++)
-    print("{num_1:03d} ".format(num_1=num_1)),
-    cont -=1
-    if cont == 0: 
-        cont = 10
-        print('\n')
-else:
-    print("\n[ {num_2} < {num_1} ]".format(num_1=num_1, num_2=num_2))
+        print("{0} you have an access denied \n\n".format(my_name))
