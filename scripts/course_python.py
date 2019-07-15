@@ -1,31 +1,21 @@
 #!/usr/bin/env python
-import rospy
+# -*- coding: utf-8 -*-
+
 import sys
 
-print(sys.version)
+print ("Python version:", (sys.version), '\n')
 
-texto = 'Hello world!'
-cidade = 'Salvador'
-ano = 2019
+# Recommended typing.
+my_nome = 'Jótelly Barros'
+idade = 32
 
-print texto + ': ' + str(ano) + " OK."
-print texto, ':', ano, ' OK'
-print "Vivo em %s: %s: %i OK" %(cidade, texto, ano) # Similar ao C++
-print 'Moro em {0}: {1}: {2} OK'.format(cidade, texto, ano) # Novo padrao
+print ("{0} do tipo {tipo}".format(my_nome, tipo = type(my_nome)))
+print (str(idade)[0])
 
-# ----------------------------------------------------------------
+print (my_nome[:5])
+print (my_nome[5:])
+print (my_nome[0:3])
 
-valor_1 = 5
-valor_2 = 8
-soma = valor_1 + valor_2
-
-print 'O resultado da soma he {valor}'.format(valor=soma)
-
-# ----------------------------------------------------------------
-
-print 'Teste print'
-print "Teste print"
-print ('Teste print')
-print ("Teste print")
-print ('Teste print');
-print ("Teste print");
+# palindromo test
+palindromo = 'socorram me subi no onibus em marrocos'
+print (palindromo[::-1])
