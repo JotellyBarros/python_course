@@ -4,34 +4,65 @@ import sys
 print ("Python version:", (sys.version), '\n')
 
 # -------------------------------------------------------------------------------
-# Data entry using input
+# Class Dogs
 
-dict_data = {
-    "JOTELLY": "250e87",
-    "ANA": "123456",
-    "FABIO": "34050",
-    "MARINS": "bobagem123",
-    "LUAN": "must25"
-}
 
-# Calling a Function search_user_name
-def search_user_name(user, password):
-    # search name value and password value in dict_data
-    for x in dict_data:
-        if user in x:
-            # print("{user_name}!".format(user_name=x))
-            if(dict_data[x] == password):
-                return True
-    return False
+class Dogs():
+    cover = 'Hair'
+    food = 'Meat'
+    paws = 4
+    habitat = 'Domestic'
+    name = 'Rex'
 
-while (1):
-    # Takes input name user
-    my_name = str(raw_input('Insert your name: '))
+# The internal attribute __name__, if it exists, returns the name of the object which is applied
+# print(Dogs.__name__)
 
-    # Takes input name user
-    my_passwords = str(raw_input('Insert your passwords: '))
+# Techniques of introspections
+# print(dir(Dogs))
 
-    if search_user_name(my_name.upper(), my_passwords):
-        print("Welcome {0}".format(my_name))
-    else:
-        print("{0} you have an access denied \n\n".format(my_name))
+
+Poodle = Dogs()
+Poodle.name = 'Mel'
+print(Poodle.name)
+
+# ---------------------------------------------------------------
+
+
+class Circulos:
+    valor = 0
+
+    def soma_Valores(self, novo_valor):
+        self.soma = (novo_valor + self.valor)
+
+
+Valor1 = Circulos()
+Valor2 = Circulos()
+
+Valor1.valor = 1
+Valor2.valor = 2
+
+# print(Valor1.valor)
+# print(Valor2.valor)
+
+Valor1.soma_Valores(5)
+print(Valor1.soma)
+
+Valor2.soma_Valores(5)
+print(Valor2.soma)
+
+# ---------------------------------------------------------------
+
+class Bank:
+    def __init__(self, name, account, cpf):
+        self.name = name
+        self.account = account
+        self.cpf = cpf
+    
+    def print_Informations(self):
+        print("Welcome: {name}".format(name = self.name))
+        print("Account: {account}".format(account = self.account))
+        print("Cpf: {cpf}".format(cpf = self.cpf))
+
+client = Bank('Jotely Barros', '10031141', '03338262566')
+client.print_Informations()
+# print("Welcome: {name}\n account: {account}\n cpf: {cpf}".format(name = client.name, account = client.account, cpf = client.cpf))
