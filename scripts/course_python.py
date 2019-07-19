@@ -4,65 +4,84 @@ import sys
 print ("Python version:", (sys.version), '\n')
 
 # -------------------------------------------------------------------------------
-# Class Dogs
-
-
-class Dogs():
-    cover = 'Hair'
-    food = 'Meat'
-    paws = 4
-    habitat = 'Domestic'
-    name = 'Rex'
 
 # The internal attribute __name__, if it exists, returns the name of the object which is applied
-# print(Dogs.__name__)
-
-# Techniques of introspections
-# print(dir(Dogs))
 
 
-Poodle = Dogs()
-Poodle.name = 'Mel'
-print(Poodle.name)
+class PersonDocumentation:
+    """ 
+        This is the class PersonDocumentation
+    """
+    # Method contructor
 
-# ---------------------------------------------------------------
-
-
-class Circulos:
-    valor = 0
-
-    def soma_Valores(self, novo_valor):
-        self.soma = (novo_valor + self.valor)
-
-
-Valor1 = Circulos()
-Valor2 = Circulos()
-
-Valor1.valor = 1
-Valor2.valor = 2
-
-# print(Valor1.valor)
-# print(Valor2.valor)
-
-Valor1.soma_Valores(5)
-print(Valor1.soma)
-
-Valor2.soma_Valores(5)
-print(Valor2.soma)
-
-# ---------------------------------------------------------------
-
-class Bank:
-    def __init__(self, name, account, cpf):
-        self.name = name
+    def __init__(self, nome, account, ativo, apelido, sexo, email, endereco, foneCelular, dataNascimento):
+        self.nome = nome
         self.account = account
-        self.cpf = cpf
-    
-    def print_Informations(self):
-        print("Welcome: {name}".format(name = self.name))
-        print("Account: {account}".format(account = self.account))
-        print("Cpf: {cpf}".format(cpf = self.cpf))
+        self.isActive = ativo
+        self.apelido = apelido
+        self.sexo = sexo
+        self.email = email
+        self.endereco = endereco
+        self.foneCelular = foneCelular
+        self.dataNascimento = dataNascimento
 
-client = Bank('Jotely Barros', '10031141', '03338262566')
-client.print_Informations()
-# print("Welcome: {name}\n account: {account}\n cpf: {cpf}".format(name = client.name, account = client.account, cpf = client.cpf))
+
+class PhysicalPerson(PersonDocumentation):
+    """ 
+        This is the class PhysicalPerson
+    """
+    # Method contructor
+
+    def __init__(self, rg, cpf, nome):
+        PersonDocumentation.__init__(self, nome, account=None, ativo=None, apelido=None, sexo=None,
+                                     email=None, endereco=None, foneCelular=None, dataNascimento=None)
+        self.rg = rg
+        self.cpf = cpf
+
+
+class Banks():
+    """ 
+        This is the class Bank documentation
+    """
+
+    # Method contructor
+    def __init__(self):
+        self.clients = []
+
+    # Method to register new clients
+    def registerClients(self, client):
+        client.account = len(self.clients)+1
+        self.clients.append(client)
+
+    def printClientByCpf(self, cpf):
+        for client in self.clients:
+            if client.cpf == cpf:
+                print("\nAccount: {0}".format(client.account))
+                print("Nome: {0}".format(client.nome))
+                print("Rg: {0}".format(client.rg))
+                print("Cpf: {0}".format(client.cpf))
+                print("Ativo: {0}".format(client.isActive))
+                print("Apelido: {0}".format(client.apelido))
+                print("Sexo: {0}".format(client.sexo))
+                print("Email: {0}".format(client.email))
+                print("Endereco: {0}".format(client.endereco))
+                print("FoneCelular: {0}".format(client.foneCelular))
+                print("DataNascimento: {0}\n".format(client.dataNascimento))
+
+if __name__ == '__main__':
+
+    bradesco = Banks()
+
+    client_001 = PhysicalPerson("0458637844", "0338262876", "Jotelly Barros")
+    client_001.email = "jotelly@gmail.com"
+    bradesco.registerClients(client_001)
+    
+    client_002 = PhysicalPerson("84654ds655", "0215645458", "Jean Xavier")
+    bradesco.registerClients(client_002)
+    
+    client_003 = PhysicalPerson("8451841543", "0875654650", "Lucas Marins")
+    bradesco.registerClients(client_003)
+
+    bradesco.printClientByCpf("0338262876")
+    bradesco.printClientByCpf("0215645458")
+    bradesco.printClientByCpf("0875654650")
