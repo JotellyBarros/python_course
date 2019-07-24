@@ -6,25 +6,31 @@ import rospy
 # import the python_course service
 from python_course.srv import *
 
-def add_two_ints_client(x, y):
-    rospy.wait_for_service('add_two_ints')
+def client(parameter_value):
+    rospy.wait_for_service('request')
     try:
-        add_two_ints = rospy.ServiceProxy('add_two_ints', MyService)
-        resp1 = add_two_ints(x, y)
-        return resp1.sum
+        request = rospy.ServiceProxy('request', MyService)
+        resp1 = request()
+        if (parameter_value == "voltage"):
+            return resp1.sys_voltage
+        elif (parameter_value == "current"):
+            return resp1.sys_current
+        elif (parameter_value == "temperature"):
+            return resp1.sys_temperature
+        elif (parameter_value == "active"):
+            return resp1.sys_active
+        else:
+            return resp1
     except rospy.ServiceException, e:
-        print "Service call failed: %s"%e
+        print "Service call failed: %s" %e
 
 def usage():
-    return "%s [x y]"%sys.argv[0]
+    return "%s [parameter]" %sys.argv[0]
 
 if __name__ == "__main__":
-    if len(sys.argv) == 3:
-        x = int(sys.argv[1])
-        y = int(sys.argv[2])
+    if len(sys.argv) == 2:
+        parameter = (sys.argv[1])
     else:
         print usage()
         sys.exit(1)
-    print "Requesting %s+%s"%(x, y)
-    print "%s + %s = %s"%(x, y, add_two_ints_client(x, y))
-    
+    print("{parameter} : {return_server}".format(parameter = parameter, return_server=client(parameter)))
