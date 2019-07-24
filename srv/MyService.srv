@@ -1,0 +1,9 @@
+#request constants
+int64 a
+int64 b
+
+#request fields
+
+---
+#response constants
+int64 sum

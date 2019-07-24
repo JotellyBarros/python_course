@@ -68,6 +68,7 @@ class Banks():
                 print("FoneCelular: {0}".format(client.foneCelular))
                 print("DataNascimento: {0}\n".format(client.dataNascimento))
 
+
 if __name__ == '__main__':
 
     bradesco = Banks()
@@ -75,13 +76,21 @@ if __name__ == '__main__':
     client_001 = PhysicalPerson("0458637844", "0338262876", "Jotelly Barros")
     client_001.email = "jotelly@gmail.com"
     bradesco.registerClients(client_001)
-    
+
     client_002 = PhysicalPerson("84654ds655", "0215645458", "Jean Xavier")
     bradesco.registerClients(client_002)
-    
+
     client_003 = PhysicalPerson("8451841543", "0875654650", "Lucas Marins")
     bradesco.registerClients(client_003)
 
     bradesco.printClientByCpf("0338262876")
     bradesco.printClientByCpf("0215645458")
     bradesco.printClientByCpf("0875654650")
+
+    nubank = Banks()
+
+    client_001 = PhysicalPerson("546815244", "548576568", "Atico Mismana")
+    client_001.email = "atico@gmail.com"
+
+    nubank.registerClients(client_001)
+    nubank.printClientByCpf("548576568")
