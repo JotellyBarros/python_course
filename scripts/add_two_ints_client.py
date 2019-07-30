@@ -4,33 +4,29 @@ import sys
 import rospy
 
 # import the python_course service
+from std_srvs.srv import SetBool
 from python_course.srv import *
 
-def client(parameter_value):
-    rospy.wait_for_service('request')
-    try:
-        request = rospy.ServiceProxy('request', MyService)
-        resp1 = request()
-        if (parameter_value == "voltage"):
-            return resp1.sys_voltage
-        elif (parameter_value == "current"):
-            return resp1.sys_current
-        elif (parameter_value == "temperature"):
-            return resp1.sys_temperature
-        elif (parameter_value == "active"):
-            return resp1.sys_active
-        else:
-            return resp1
-    except rospy.ServiceException, e:
-        print "Service call failed: %s" %e
+# def SetBool():
+#     rospy.wait_for_service('enable_output')
+#     enable_output = rospy.ServiceProxy('enable_output', SetBool)
+#     resp1 = enable_output(True)
+#     return resp1
 
-def usage():
-    return "%s [parameter]" %sys.argv[0]
+def setvoltage():
+    rospy.wait_for_service('set_voltage')
+
+    set_voltage = rospy.ServiceProxy('set_voltage', SetFloat64)
+    resp1 = set_voltage(10)
+    return resp1
+
+def setcurrent():
+    rospy.wait_for_service('set_current')
+    set_current = rospy.ServiceProxy('set_current', SetFloat64)
+    resp1 = set_current(100)
+    return resp1
 
 if __name__ == "__main__":
-    if len(sys.argv) == 2:
-        parameter = (sys.argv[1])
-    else:
-        print usage()
-        sys.exit(1)
-    print("{parameter} : {return_server}".format(parameter = parameter, return_server=client(parameter)))
+    # print("{return_server}".format(return_server=SetBool()))
+    print("{return_server}".format(return_server=setvoltage()))
+    print("{return_server}".format(return_server=setcurrent()))

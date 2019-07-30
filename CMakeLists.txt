@@ -5,19 +5,19 @@ project(python_course)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
-  std_msgs
   roslint
+  std_msgs
   message_generation
 )
 
 ## Generate services in the 'srv' folder
 add_service_files(FILES
-  MyService.srv
+  SetFloat64.srv
 )
 
 ## Generate messages in the 'msg' folder
 add_message_files(FILES
-  MyMonitor.msg
+  PowerSupplyState.msg
 )
 
 # Actually generate the language-specific message and service files
@@ -39,6 +39,7 @@ include_directories(
 )
 
 catkin_install_python(PROGRAMS
+  scripts/power_supply.py
   scripts/add_two_ints_client.py
   scripts/add_two_ints_server.py
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/scripts

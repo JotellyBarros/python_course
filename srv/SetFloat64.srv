@@ -1,0 +1,8 @@
+#request constants
+float64 data      # e.g. for hardware enabling / disabling
+
+---
+
+#response constants
+bool success   # indicate successful run of triggered service
+string message # informational, e.g. for error messages

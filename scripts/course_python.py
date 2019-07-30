@@ -13,7 +13,6 @@ class PersonDocumentation:
         This is the class PersonDocumentation
     """
     # Method contructor
-
     def __init__(self, nome, account, ativo, apelido, sexo, email, endereco, foneCelular, dataNascimento):
         self.nome = nome
         self.account = account
