@@ -39,7 +39,7 @@ include_directories(
 )
 
 catkin_install_python(PROGRAMS
-  scripts/power_supply.py
+  scripts/debug_power_supply.py
   scripts/add_two_ints_client.py
   scripts/add_two_ints_server.py
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/scripts
